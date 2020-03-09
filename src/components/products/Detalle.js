@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from '../../config/axios';
 
-
 function Detalle(props){
   
   const {id} = props.match.params;
@@ -16,15 +15,19 @@ function Detalle(props){
     colors: [],
     
 });
- 
-    useEffect(() => {
-        const reqAPI = async () => {
+
+  const reqAPI = async () => {
+    try {
         const reqProduct = await axios.get(`/products/detalle/${id}`);
         setProduct(reqProduct.data);
-   }
-
-   reqAPI();
-}, []);
+    } catch (error) {
+        console.log(error);
+    }
+  };
+ 
+    useEffect(() => {
+          reqAPI();
+    }, []);
 
     return(
     <div className="container detalle">
