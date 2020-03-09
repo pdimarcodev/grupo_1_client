@@ -1,9 +1,8 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from '../../config/axios';
 
 
 function Detalle(props){
-
   
   const {id} = props.match.params;
 
@@ -28,27 +27,27 @@ function Detalle(props){
 }, []);
 
     return(
-        <div className="container detalle">
-  <div className="row">
+    <div className="container detalle">
+    <div className="row">
     <figure className="product-img col-4" >
-      <img src={`http://localhost:5000/images/${product.image}`} alt={product.name} width="100%" />
+    <img src={`http://localhost:5000/images/${product.image}`} alt={product.name} width="100%" />
     </figure>
-  <div className="producto col-6">
+    <div className="producto col-6">
     <h1>{product.name}</h1> <br />
     <h5>Cód: {id}</h5><br />  
     <h5>{product.description}</h5> <br />
     <h5>Marca: {product.brand.name}</h5> <br />
     <h5>Categoría: {product.category.name}</h5> <br />
     <h5>Colores:</h5>
-    { product.colors.map( item => (
       <ul>
+        { product.colors.map( item => (
           <li
           key={item.id}
           >
               {item.name}
           </li>
+        ))}
       </ul>
-    ))}
     <br />
     <h1>$ {product.price}</h1> <br />
     <figure className="medios-de-pago">
